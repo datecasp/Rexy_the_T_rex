@@ -47,55 +47,62 @@ public class TrexController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    private void Update()
     {
-        // Movimiento horizontal
+        // Movimiento con teclado
         movement = Input.GetAxisRaw("Horizontal");
 
-        // Carrera
+        // Carrera con teclado
         isRunning = Input.GetKey(runKey);
 
         // Comprobar suelo
         if (groundCheck != null)
-        {
-            isGrounded = Physics2D.Raycast(
-                groundCheck.position,
-                Vector2.down,
-                0.1f,
-                groundLayer);
-        }
+            isGrounded = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.1f, groundLayer);
 
-        // Orientación: inicialmente mira a la izquierda
+        // Mirar izquierda/derecha
         if (movement > 0)
             sprite.flipX = true;
         else if (movement < 0)
             sprite.flipX = false;
 
-        // Parámetros del Animator
         anim.SetMoveSpeed(Mathf.Abs(movement));
         anim.SetRunning(isRunning);
 
-        // Salto
+        // Salto con teclado
         if (Input.GetKeyDown(jumpKey) && isGrounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            anim.Jump();
-        }
+            Jump();
 
-        // Ataque
+        // Ataque con teclado
         if (Input.GetKeyDown(attackKey))
-        {
-            anim.Attack();
-        }
+            Attack();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         float speed = isRunning ? runSpeed : walkSpeed;
+        rb.linearVelocity = new Vector2(movement * speed, rb.linearVelocity.y);
+    }
 
-        rb.linearVelocity = new Vector2(
-            movement * speed,
-            rb.linearVelocity.y
-        );
+    public void MoveHorizontal(float value)
+    {
+        movement = value;
+    }
+
+    public void SetRunning(bool running)
+    {
+        isRunning = running;
+    }
+
+    public void Jump()
+    {
+        if (!isGrounded) return;
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        anim.Jump();
+    }
+
+    public void Attack()
+    {
+        anim.Attack();
     }
 }
