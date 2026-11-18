@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TrexSprite;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -27,6 +28,7 @@ public class TrexController : MonoBehaviour
     private float movement;
     private bool isGrounded;
     private bool isRunning;
+    private bool isDead;
 
     private void Reset()
     {
@@ -104,5 +106,26 @@ public class TrexController : MonoBehaviour
     public void Attack()
     {
         anim.Attack();
+    }
+
+    public void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        enabled = false;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        HUDManager hud = FindFirstObjectByType<HUDManager>();
+        if (hud != null) hud.LoseLife();
+
+        Invoke(nameof(RestartScene), 1f);
+    }
+
+    private void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

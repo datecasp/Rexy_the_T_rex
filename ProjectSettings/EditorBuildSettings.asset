@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1_Chunk_Isla3.unity
     guid: 463dde0f7453075458d7fa87d6562b82
+  - enabled: 1
+    path: Assets/Scenes/Level1_Chunk_Plataformas.unity
+    guid: 85f6906fb78d9f5499433b7032b202e5
+  - enabled: 1
+    path: Assets/Scenes/Level1_Chunk_IslaFinal.unity
+    guid: 1b2e12dffe280ae4085c2cfb4c36699e
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
