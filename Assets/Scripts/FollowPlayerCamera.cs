@@ -10,28 +10,17 @@ public class FollowPlayerCamera : MonoBehaviour
     public float jumpFollowThreshold = 1.5f; // altura mínima antes de empezar a subir la cámara
 
     private float groundAnchorY;
-    private bool hasGroundAnchor;
+    private float minimumCameraY;
 
     private void Start()
     {
-        if (target != null)
-        {
-            groundAnchorY = target.position.y;
-            hasGroundAnchor = true;
-        }
+        minimumCameraY = transform.position.y;
+        groundAnchorY = minimumCameraY - offset.y;
     }
 
     private void Update()
     {
-        if (target == null)
-            return;
-
-        // Mantener un ancla del suelo mientras el jugador está cerca del suelo
-        if (target.position.y <= groundAnchorY + 0.5f)
-        {
-            groundAnchorY = target.position.y;
-            hasGroundAnchor = true;
-        }
+        // El ancla vertical se mantiene fija en la posición inicial de la cámara.
     }
 
     private void LateUpdate()
@@ -52,6 +41,8 @@ public class FollowPlayerCamera : MonoBehaviour
             // Mientras salta poco, se queda casi fija en el suelo
             desiredY = groundAnchorY + offset.y;
         }
+
+        desiredY = Mathf.Max(desiredY, minimumCameraY);
 
         Vector3 desiredPosition = new Vector3(desiredX, desiredY, offset.z);
 

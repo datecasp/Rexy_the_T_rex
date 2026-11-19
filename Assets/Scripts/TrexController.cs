@@ -21,7 +21,14 @@ public class TrexController : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode attackKey = KeyCode.F;
 
+    [Header("Respawn")]
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float respawnDelay = 1f;
+
     private Rigidbody2D rb;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private Vector3 initialScale;
     private TrexAnimationDriver anim;
     private SpriteRenderer sprite;
 
@@ -47,6 +54,10 @@ public class TrexController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<TrexAnimationDriver>();
         sprite = GetComponent<SpriteRenderer>();
+
+        initialPosition = spawnPoint != null ? spawnPoint.position : transform.position;
+        initialRotation = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
+        initialScale = transform.localScale;
     }
 
     private void Update()
@@ -108,24 +119,56 @@ public class TrexController : MonoBehaviour
         anim.Attack();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        CollectiblePickup pickup = other.GetComponent<CollectiblePickup>();
+        if (pickup == null)
+            pickup = other.GetComponentInParent<CollectiblePickup>();
+
+        if (pickup != null)
+            pickup.Collect();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        CollectiblePickup pickup = collision.collider.GetComponent<CollectiblePickup>();
+        if (pickup == null)
+            pickup = collision.collider.GetComponentInParent<CollectiblePickup>();
+
+        if (pickup != null)
+            pickup.Collect();
+    }
+
     public void Die()
     {
         if (isDead) return;
 
         isDead = true;
         enabled = false;
+        movement = 0f;
 
         rb.linearVelocity = Vector2.zero;
         rb.simulated = false;
 
         HUDManager hud = FindFirstObjectByType<HUDManager>();
-        if (hud != null) hud.LoseLife();
+        bool canRespawn = hud != null
+            ? hud.LoseLife()
+            : false;
 
-        Invoke(nameof(RestartScene), 1f);
+        if (canRespawn)
+            Invoke(nameof(Respawn), respawnDelay);
     }
 
-    private void RestartScene()
+    private void Respawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        transform.localScale = initialScale;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = true;
+        isGrounded = false;
+        isDead = false;
+        enabled = true;
     }
 }

@@ -1,0 +1,72 @@
+[
+  {
+    "digit": 0,
+    "file": "Digit_0.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 1,
+    "file": "Digit_1.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 2,
+    "file": "Digit_2.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 3,
+    "file": "Digit_3.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 4,
+    "file": "Digit_4.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 5,
+    "file": "Digit_5.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 6,
+    "file": "Digit_6.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 7,
+    "file": "Digit_7.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 8,
+    "file": "Digit_8.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  },
+  {
+    "digit": 9,
+    "file": "Digit_9.png",
+    "size": "256x256",
+    "pivot_recommendation": "Bottom Center",
+    "pixels_per_unit_recommendation": 100
+  }
+]
