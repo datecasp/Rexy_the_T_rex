@@ -257,6 +257,6 @@ MonoBehaviour:
   stopDistance: 0.9
   spriteRenderer: {fileID: 7464566091920576903}
   stompHorizontalMargin: 0.15
-  stompScore: 100
+  stompScore: 350
   minimumFallSpeed: 0.1
   stompTopMargin: 0.15

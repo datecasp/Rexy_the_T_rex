@@ -32,8 +32,8 @@ public class ScoreDigitDisplay : MonoBehaviour
 
             RectTransform rect = digitObject.AddComponent<RectTransform>();
             rect.SetParent(container, false);
-            rect.anchorMin = new Vector2(0f, 0.5f);
-            rect.anchorMax = new Vector2(0f, 0.5f);
+            rect.anchorMin = new Vector2(1f, 0.5f);
+            rect.anchorMax = new Vector2(1f, 0.5f);
             rect.pivot = new Vector2(0.5f, 0.5f);
 
             digits.Add(digitObject.AddComponent<Image>());
@@ -58,8 +58,9 @@ public class ScoreDigitDisplay : MonoBehaviour
             digits[i].preserveAspect = true;
 
             RectTransform rect = digits[i].rectTransform;
+            int positionFromRight = value.Length - 1 - i;
             rect.anchoredPosition = new Vector2(
-                i * (digitSize.x + spacing),
+                -positionFromRight * (digitSize.x + spacing),
                 0f);
             rect.sizeDelta = digitSize;
         }
@@ -87,7 +88,7 @@ public class ScoreDigitDisplay : MonoBehaviour
         container.SetParent(transform, false);
         container.anchorMin = new Vector2(1f, 0.5f);
         container.anchorMax = new Vector2(1f, 0.5f);
-        container.pivot = new Vector2(0f, 0.5f);
+        container.pivot = new Vector2(1f, 0.5f);
         container.anchoredPosition = new Vector2(8f, 0f);
     }
 

@@ -23,7 +23,7 @@ public class DinosaurEnemyAI : MonoBehaviour
 
     [Header("Combate")]
     [SerializeField] private float stompHorizontalMargin = 0.15f;
-    [SerializeField] private int stompScore = 100;
+    [SerializeField, Range(250, 500)] private int stompScore = 250;
     [SerializeField] private float minimumFallSpeed = 0.1f;
     [SerializeField] private float stompTopMargin = 0.15f;
 
@@ -32,6 +32,15 @@ public class DinosaurEnemyAI : MonoBehaviour
     private Vector2 startPosition;
     private int patrolDirection = 1;
     private bool isDead;
+    private bool movementControlledExternally;
+
+    public void SetMovementControlledExternally(bool controlled)
+    {
+        movementControlledExternally = controlled;
+
+        if (controlled && rb != null)
+            rb.linearVelocity = Vector2.zero;
+    }
 
     private void Awake()
     {
@@ -49,7 +58,7 @@ public class DinosaurEnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || movementControlledExternally) return;
 
         Vector2 position = rb.position;
         Vector2 destination;

@@ -218,3 +218,7 @@ MonoBehaviour:
   patrolDistance: 2.5
   stopDistance: 0.9
   spriteRenderer: {fileID: 7333236851344890716}
+  stompHorizontalMargin: 0.15
+  stompScore: 400
+  minimumFallSpeed: 0.1
+  stompTopMargin: 0.15

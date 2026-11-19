@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4517981660241007431}
   - component: {fileID: 7511977659299594879}
   - component: {fileID: 2781186540486209813}
+  - component: {fileID: 482964681957116876}
   m_Layer: 0
   m_Name: Velo
   m_TagString: Untagged
@@ -239,3 +240,27 @@ MonoBehaviour:
   patrolDistance: 2.5
   stopDistance: 0.9
   spriteRenderer: {fileID: 5883361153579212126}
+  stompHorizontalMargin: 0.15
+  stompScore: 250
+  minimumFallSpeed: 0.1
+  stompTopMargin: 0.15
+--- !u!114 &482964681957116876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157988628091775287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d6e9df41d44e1ba6e6b7e5d0c0b101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolBetweenPoints
+  leftPoint: {fileID: 0}
+  rightPoint: {fileID: 0}
+  moveSpeed: 2
+  reachDistance: 0.08
+  patrolRange: 2.5
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  flipSpriteWithDirection: 1
