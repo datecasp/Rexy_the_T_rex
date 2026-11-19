@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4361045691363762359}
   - component: {fileID: 6850994629418903799}
   - component: {fileID: 7832352083771740414}
-  - component: {fileID: 4479868975168405242}
   - component: {fileID: 706300423450418707}
   - component: {fileID: -7376310256083894956}
   - component: {fileID: 6715142393933651644}
@@ -121,18 +120,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4479868975168405242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894489172673737547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9a19239ab4cbd46a0073d8987a9a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrexAnimationDriver
 --- !u!50 &706300423450418707
 Rigidbody2D:
   serializedVersion: 5
