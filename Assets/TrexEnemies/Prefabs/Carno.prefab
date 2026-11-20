@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8233066588348814521}
   - component: {fileID: 8156105568702970292}
   - component: {fileID: 4237202611714475119}
-  - component: {fileID: 1381523818316910303}
   - component: {fileID: 113744981134707732}
   - component: {fileID: 6421694789297647401}
   - component: {fileID: 393746573057398522}
   - component: {fileID: 2315672245981077993}
+  - component: {fileID: 308344281936394964}
   m_Layer: 0
   m_Name: Carno
   m_TagString: Untagged
@@ -108,7 +108,7 @@ Animator:
   m_GameObject: {fileID: 1350000800600706306}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0e639dafe664ec4b97344e2da433e97, type: 2}
+  m_Controller: {fileID: 9100000, guid: d1a126a10e28a104db02a9158ba5ff7c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -120,22 +120,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &1381523818316910303
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350000800600706306}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: b7dcc1bbbbb036649ad6b0eaea551ce8, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!50 &113744981134707732
 Rigidbody2D:
   serializedVersion: 5
@@ -260,3 +244,21 @@ MonoBehaviour:
   stompScore: 500
   minimumFallSpeed: 0.1
   stompTopMargin: 0.15
+--- !u!114 &308344281936394964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350000800600706306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d6e9df41d44e1ba6e6b7e5d0c0b101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolBetweenPoints
+  patrolRange: {x: -2.5, y: 2.5}
+  moveSpeed: 2
+  reachDistance: 0.08
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  flipSpriteWithDirection: 1

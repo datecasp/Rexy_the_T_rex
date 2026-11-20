@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1007840821248326899}
   - component: {fileID: 7464566091920576903}
   - component: {fileID: 3368959728732918089}
-  - component: {fileID: 5317046635011245865}
   - component: {fileID: 8609078384986173970}
   - component: {fileID: 2511428863321770243}
   - component: {fileID: 544409229803621134}
   - component: {fileID: 1392131250184550791}
+  - component: {fileID: 2656101824861296496}
   m_Layer: 0
   m_Name: Dilo
   m_TagString: Untagged
@@ -108,7 +108,7 @@ Animator:
   m_GameObject: {fileID: 2579155661079248813}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8595e83a3104a874da99f4a51c9ccf28, type: 2}
+  m_Controller: {fileID: 9100000, guid: 11392a74d04bfaf49bcc0e35445462b8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -120,22 +120,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &5317046635011245865
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2579155661079248813}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 93b2b84f8ff3acd49a5f2ca15d1a6371, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!50 &8609078384986173970
 Rigidbody2D:
   serializedVersion: 5
@@ -260,3 +244,21 @@ MonoBehaviour:
   stompScore: 350
   minimumFallSpeed: 0.1
   stompTopMargin: 0.15
+--- !u!114 &2656101824861296496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2579155661079248813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d6e9df41d44e1ba6e6b7e5d0c0b101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolBetweenPoints
+  patrolRange: {x: -2.5, y: 2.5}
+  moveSpeed: 2
+  reachDistance: 0.08
+  spriteRenderer: {fileID: 0}
+  animator: {fileID: 0}
+  flipSpriteWithDirection: 1
