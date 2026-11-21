@@ -1,0 +1,332 @@
+[
+  {
+    "name": "Drumstick_01",
+    "path": "Food/Meat/Drumstick_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      70,
+      45,
+      330,
+      245
+    ]
+  },
+  {
+    "name": "Drumstick_02",
+    "path": "Food/Meat/Drumstick_02.png",
+    "canvas": "512x512",
+    "source_crop": [
+      300,
+      45,
+      555,
+      245
+    ]
+  },
+  {
+    "name": "Drumstick_03",
+    "path": "Food/Meat/Drumstick_03.png",
+    "canvas": "512x512",
+    "source_crop": [
+      535,
+      45,
+      730,
+      245
+    ]
+  },
+  {
+    "name": "Drumstick_04",
+    "path": "Food/Meat/Drumstick_04.png",
+    "canvas": "512x512",
+    "source_crop": [
+      725,
+      45,
+      875,
+      245
+    ]
+  },
+  {
+    "name": "Drumstick_05",
+    "path": "Food/Meat/Drumstick_05.png",
+    "canvas": "512x512",
+    "source_crop": [
+      865,
+      45,
+      1035,
+      245
+    ]
+  },
+  {
+    "name": "Drumstick_06",
+    "path": "Food/Meat/Drumstick_06.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1020,
+      45,
+      1230,
+      245
+    ]
+  },
+  {
+    "name": "Drumstick_07",
+    "path": "Food/Meat/Drumstick_07.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1220,
+      45,
+      1495,
+      245
+    ]
+  },
+  {
+    "name": "Bone_01",
+    "path": "Food/Bones/Bone_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      80,
+      245,
+      290,
+      435
+    ]
+  },
+  {
+    "name": "Bone_02",
+    "path": "Food/Bones/Bone_02.png",
+    "canvas": "512x512",
+    "source_crop": [
+      285,
+      245,
+      510,
+      435
+    ]
+  },
+  {
+    "name": "Bone_03",
+    "path": "Food/Bones/Bone_03.png",
+    "canvas": "512x512",
+    "source_crop": [
+      500,
+      245,
+      730,
+      435
+    ]
+  },
+  {
+    "name": "Bone_04",
+    "path": "Food/Bones/Bone_04.png",
+    "canvas": "512x512",
+    "source_crop": [
+      710,
+      245,
+      910,
+      435
+    ]
+  },
+  {
+    "name": "Bone_05",
+    "path": "Food/Bones/Bone_05.png",
+    "canvas": "512x512",
+    "source_crop": [
+      900,
+      245,
+      1080,
+      435
+    ]
+  },
+  {
+    "name": "Bone_06",
+    "path": "Food/Bones/Bone_06.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1060,
+      245,
+      1260,
+      435
+    ]
+  },
+  {
+    "name": "Bone_07",
+    "path": "Food/Bones/Bone_07.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1240,
+      245,
+      1495,
+      435
+    ]
+  },
+  {
+    "name": "Skull_01",
+    "path": "Food/Remains/Skull_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      55,
+      420,
+      350,
+      625
+    ]
+  },
+  {
+    "name": "Skull_02",
+    "path": "Food/Remains/Skull_02.png",
+    "canvas": "512x512",
+    "source_crop": [
+      330,
+      420,
+      590,
+      625
+    ]
+  },
+  {
+    "name": "Skeleton_01",
+    "path": "Food/Remains/Skeleton_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      585,
+      420,
+      900,
+      625
+    ]
+  },
+  {
+    "name": "Skeleton_02",
+    "path": "Food/Remains/Skeleton_02.png",
+    "canvas": "512x512",
+    "source_crop": [
+      880,
+      420,
+      1195,
+      625
+    ]
+  },
+  {
+    "name": "MeatRemains_01",
+    "path": "Food/Remains/MeatRemains_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1180,
+      420,
+      1510,
+      625
+    ]
+  },
+  {
+    "name": "Egg_Whole",
+    "path": "Food/Eggs/Egg_Whole.png",
+    "canvas": "512x512",
+    "source_crop": [
+      75,
+      615,
+      360,
+      820
+    ]
+  },
+  {
+    "name": "Egg_Hatched_01",
+    "path": "Food/Eggs/Egg_Hatched_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      340,
+      615,
+      625,
+      820
+    ]
+  },
+  {
+    "name": "Egg_Hatched_02",
+    "path": "Food/Eggs/Egg_Hatched_02.png",
+    "canvas": "512x512",
+    "source_crop": [
+      610,
+      615,
+      900,
+      820
+    ]
+  },
+  {
+    "name": "Egg_Hatching",
+    "path": "Food/Eggs/Egg_Hatching.png",
+    "canvas": "512x512",
+    "source_crop": [
+      885,
+      615,
+      1190,
+      820
+    ]
+  },
+  {
+    "name": "Egg_Hatched_03",
+    "path": "Food/Eggs/Egg_Hatched_03.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1170,
+      615,
+      1505,
+      820
+    ]
+  },
+  {
+    "name": "Apple",
+    "path": "Food/Plants/Apple.png",
+    "canvas": "512x512",
+    "source_crop": [
+      55,
+      800,
+      330,
+      1010
+    ]
+  },
+  {
+    "name": "Berries",
+    "path": "Food/Plants/Berries.png",
+    "canvas": "512x512",
+    "source_crop": [
+      320,
+      800,
+      570,
+      1010
+    ]
+  },
+  {
+    "name": "Plant_01",
+    "path": "Food/Plants/Plant_01.png",
+    "canvas": "512x512",
+    "source_crop": [
+      555,
+      800,
+      815,
+      1010
+    ]
+  },
+  {
+    "name": "Plant_02",
+    "path": "Food/Plants/Plant_02.png",
+    "canvas": "512x512",
+    "source_crop": [
+      800,
+      800,
+      1080,
+      1010
+    ]
+  },
+  {
+    "name": "Leaf",
+    "path": "Food/Plants/Leaf.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1060,
+      800,
+      1285,
+      1010
+    ]
+  },
+  {
+    "name": "MeatChunk",
+    "path": "Food/Meat/MeatChunk.png",
+    "canvas": "512x512",
+    "source_crop": [
+      1260,
+      800,
+      1515,
+      1010
+    ]
+  }
+]
