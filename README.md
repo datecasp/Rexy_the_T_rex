@@ -1,6 +1,6 @@
-# Rexy 2D
+# Rexy the T-Rex
 
-**Rexy 2D** es un juego de plataformas 2D desarrollado en Unity, protagonizado por Rexy, un T-Rex que debe recorrer niveles, esquivar enemigos, saltar obstáculos y recoger objetos para conseguir la máxima puntuación.
+**Rexy the T-Rex** es un juego de plataformas 2D desarrollado en Unity
 
 ## Características
 

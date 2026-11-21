@@ -78,6 +78,11 @@ sysinfo.txt
 # Mono auto generated files
 mono_crash.*
 
+# Unity license activation files
+*.alf
+*.ulf
+*.keystore
+
 # Builds
 *.apk
 *.aab
