@@ -62,11 +62,17 @@ public class TrexController : MonoBehaviour
 
     private void Update()
     {
-        // Movimiento con teclado
-        movement = Input.GetAxisRaw("Horizontal");
+        if (!Application.isMobilePlatform)
+        {
+            movement = Input.GetAxisRaw("Horizontal");
+            isRunning = Input.GetKey(runKey);
 
-        // Carrera con teclado
-        isRunning = Input.GetKey(runKey);
+            if (Input.GetKeyDown(jumpKey) && isGrounded)
+                Jump();
+
+            if (Input.GetKeyDown(attackKey))
+                Attack();
+        }
 
         // Comprobar suelo
         if (groundCheck != null)
@@ -81,13 +87,6 @@ public class TrexController : MonoBehaviour
         anim.SetMoveSpeed(Mathf.Abs(movement));
         anim.SetRunning(isRunning);
 
-        // Salto con teclado
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
-            Jump();
-
-        // Ataque con teclado
-        if (Input.GetKeyDown(attackKey))
-            Attack();
     }
 
     private void FixedUpdate()

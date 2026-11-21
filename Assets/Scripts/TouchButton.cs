@@ -8,7 +8,14 @@ public class TouchButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Left,
         Right,
         Jump,
-        Attack
+        Attack,
+        Run
+    }
+
+    private void Awake()
+    {
+        if (player == null)
+            player = FindFirstObjectByType<TrexController>();
     }
 
     public ButtonType type;
@@ -16,6 +23,9 @@ public class TouchButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (player == null)
+            return;
+
         switch (type)
         {
             case ButtonType.Left:
@@ -30,12 +40,21 @@ public class TouchButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             case ButtonType.Attack:
                 player.Attack();
                 break;
+            case ButtonType.Run:
+                player.SetRunning(true);
+                break;
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (player == null)
+            return;
+
         if (type == ButtonType.Left || type == ButtonType.Right)
             player.MoveHorizontal(0f);
+
+        if (type == ButtonType.Run)
+            player.SetRunning(false);
     }
 }
