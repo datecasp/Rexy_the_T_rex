@@ -56,6 +56,36 @@ public class DinosaurEnemyAI : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        IgnoreCollisionsWithOtherEnemies();
+    }
+
+    private void IgnoreCollisionsWithOtherEnemies()
+    {
+        Collider2D[] ownColliders = GetComponentsInChildren<Collider2D>();
+        DinosaurEnemyAI[] enemies = FindObjectsByType<DinosaurEnemyAI>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None);
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] == null || enemies[i] == this)
+                continue;
+
+            Collider2D[] otherColliders = enemies[i].GetComponentsInChildren<Collider2D>();
+
+            for (int ownIndex = 0; ownIndex < ownColliders.Length; ownIndex++)
+            {
+                for (int otherIndex = 0; otherIndex < otherColliders.Length; otherIndex++)
+                {
+                    if (ownColliders[ownIndex] != null && otherColliders[otherIndex] != null)
+                        Physics2D.IgnoreCollision(ownColliders[ownIndex], otherColliders[otherIndex]);
+                }
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         if (isDead || movementControlledExternally) return;

@@ -1880,7 +1880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2656101824861296496, guid: ea490b563122bc4479acfcb8e8335284, type: 3}
       propertyPath: patrolRange.y
-      value: 2.3623314
+      value: 2.050045
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
