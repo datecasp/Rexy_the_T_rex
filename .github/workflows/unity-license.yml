@@ -10,19 +10,31 @@ jobs:
   request-activation:
     name: Request Unity activation file
     runs-on: ubuntu-latest
+
     steps:
-      - name: Request Unity activation file
-        uses: game-ci/unity-request-activation-file@v2
-
-      - name: Upload activation file
-        uses: actions/upload-artifact@v4
-        with:
-          name: unity-activation
-          path: "*.ulf"
-          retention-days: 7
-          if-no-files-found: error
-
-      - name: Activation instructions
+      - name: Request Unity activation instructions
         run: |
-          echo "Descarga el artefacto unity-activation, súbelo a https://license.unity3d.com/manual y descarga el ULF generado."
-          echo "Convierte el ULF a base64 y guárdalo como el secreto UNITY_LICENSE."
+          echo "Unity Personal CI activation is no longer supported by the old"
+          echo "game-ci/unity-request-activation-file@v2 action."
+          echo
+          echo "The license for this repository must be activated according to the"
+          echo "current GameCI Personal license instructions:"
+          echo "https://game.ci/docs/github/activation"
+
+      - name: Document required Unity license secret
+        run: |
+          echo "After obtaining an activation file (ULF), convert it to base64 and store"
+          echo "it as the UNITY_LICENSE repository secret:"
+          echo "GitHub repository -> Settings -> Secrets and variables -> Actions"
+          echo
+          echo "Do not commit the ULF or base64 license contents to the repository."
+
+      - name: Verify UNITY_LICENSE is configured
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        run: |
+          if [ -z "$UNITY_LICENSE" ]; then
+            echo "::error::UNITY_LICENSE is not configured. Add the Personal license ULF to repository secrets before running Unity builds."
+            exit 1
+          fi
+          echo "UNITY_LICENSE is configured as a repository secret."
