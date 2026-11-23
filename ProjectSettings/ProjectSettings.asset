@@ -171,8 +171,8 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Standalone: com.datecasp.rexythetrex
     Android: com.datecasp.rexythetrex
+    Standalone: com.datecasp.rexythetrex
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -652,14 +652,13 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: com.datecasp.rexythetrex
-  metroProductName: Rexy the T-Rex
-  metroApplicationDescription: Rexy the T-Rex
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
+  metroApplicationDescription: Rexy the T-Rex
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0

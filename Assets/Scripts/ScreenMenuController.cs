@@ -9,23 +9,28 @@ public class ScreenMenuController : MonoBehaviour, IPointerDownHandler
         StartGame,
         RetryGame,
         MainMenu,
-        RetryOrMenu
+        RetryOrMenu,
+        QuitApplication,
+        Information
     }
 
     [SerializeField] private ScreenAction action;
     [SerializeField] private string gameSceneName = "Level1_Bootstrap";
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] private string informationSceneName = "Info";
 
     private bool isLoading;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return)
-            || Input.GetKeyDown(KeyCode.Space)
-            || Input.GetMouseButtonDown(0))
+            || Input.GetKeyDown(KeyCode.Space))
         {
             ExecuteAction();
         }
+
+        if (action == ScreenAction.Information && Input.GetKeyDown(KeyCode.Escape))
+            LoadScene(mainMenuSceneName);
 
         if (action == ScreenAction.RetryOrMenu && Input.GetKeyDown(KeyCode.Escape))
             LoadScene(mainMenuSceneName);
@@ -55,12 +60,61 @@ public class ScreenMenuController : MonoBehaviour, IPointerDownHandler
             case ScreenAction.RetryOrMenu:
                 LoadScene(gameSceneName);
                 break;
+
+            case ScreenAction.QuitApplication:
+                CloseApplication();
+                break;
+
+            case ScreenAction.Information:
+                LoadScene(informationSceneName);
+                break;
         }
+    }
+
+    public void CloseApplication()
+    {
+        Time.timeScale = 1f;
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    public void QuitApplication()
+    {
+        CloseApplication();
+    }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        LoadScene(mainMenuSceneName);
+    }
+
+    public void LoadInformation()
+    {
+        Time.timeScale = 1f;
+        LoadScene("Info");
+    }
+
+    public void LoadGame()
+    {
+        Time.timeScale = 1f;
+        LoadScene(gameSceneName);
     }
 
     private void LoadScene(string sceneName)
     {
         isLoading = true;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
 }

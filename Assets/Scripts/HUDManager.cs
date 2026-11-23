@@ -22,9 +22,24 @@ public class HUDManager : MonoBehaviour
 
     private void Awake()
     {
+        if (FindFirstObjectByType<GamePauseMenu>() == null)
+            gameObject.AddComponent<GamePauseMenu>();
+
         FindLifeIcons();
         FindScoreText();
         FindScoreDigitDisplay();
+    }
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        lives = 3;
+        UpdateHUD();
+    }
+
+    private void OnDestroy()
+    {
+        Time.timeScale = 1f;
     }
 
     private void FindScoreDigitDisplay()
@@ -55,12 +70,6 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        lives = 3;
-        UpdateHUD();
-    }
-
     public void ResetLives()
     {
         lives = 3;
@@ -80,6 +89,7 @@ public class HUDManager : MonoBehaviour
 
         if (lives == 0)
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(gameOverSceneName);
             return false;
         }
@@ -107,8 +117,7 @@ public class HUDManager : MonoBehaviour
                 foundIcons.Add(images[i]);
         }
 
-        foundIcons.Sort((a, b) =>
-            a.gameObject.name.CompareTo(b.gameObject.name));
+        foundIcons.Sort((a, b) => a.gameObject.name.CompareTo(b.gameObject.name));
 
         if (foundIcons.Count > 0)
         {
@@ -143,25 +152,6 @@ public class HUDManager : MonoBehaviour
         Canvas canvas = FindFirstObjectByType<Canvas>();
         if (canvas == null) return;
 
-        SpriteRenderer[] positionedIcons = FindObjectsByType<SpriteRenderer>(
-            FindObjectsInactive.Include,
-            FindObjectsSortMode.None);
-
-        System.Collections.Generic.List<SpriteRenderer> dinosaurIcons =
-            new System.Collections.Generic.List<SpriteRenderer>();
-
-        for (int i = 0; i < positionedIcons.Length; i++)
-        {
-            if (positionedIcons[i].sprite != null
-                && positionedIcons[i].gameObject.name.Contains("dinosaur"))
-            {
-                dinosaurIcons.Add(positionedIcons[i]);
-            }
-        }
-
-        dinosaurIcons.Sort((a, b) =>
-            a.gameObject.name.CompareTo(b.gameObject.name));
-
         for (int i = 0; i < 3; i++)
         {
             GameObject iconObject = new GameObject("dinosaur_" + i);
@@ -172,21 +162,13 @@ public class HUDManager : MonoBehaviour
             rect.anchorMin = new Vector2(0.5f, 0.5f);
             rect.anchorMax = new Vector2(0.5f, 0.5f);
             rect.pivot = new Vector2(0.5f, 0.5f);
-
-            Vector3 desiredPosition = new Vector3(-300f + i * 75f, 220f, 0f);
-            if (i < dinosaurIcons.Count)
-                desiredPosition = dinosaurIcons[i].transform.localPosition;
-
-            rect.anchoredPosition = new Vector2(desiredPosition.x, desiredPosition.y);
+            rect.anchoredPosition = new Vector2(-300f + i * 75f, 220f);
             rect.sizeDelta = new Vector2(48f, 48f);
 
             Image icon = iconObject.AddComponent<Image>();
             icon.sprite = iconSprite;
             icon.preserveAspect = true;
             foundIcons.Add(icon);
-
-            if (i < dinosaurIcons.Count)
-                dinosaurIcons[i].gameObject.SetActive(false);
         }
 
         lifeIcons = foundIcons.ToArray();
@@ -229,5 +211,47 @@ public class HUDManager : MonoBehaviour
             if (lifeIcons[i] != null)
                 lifeIcons[i].enabled = i < lives;
         }
+    }
+
+    public void QuitApplication()
+    {
+        GamePauseMenu pauseMenu = FindFirstObjectByType<GamePauseMenu>();
+        if (pauseMenu != null)
+            pauseMenu.CloseApplication();
+    }
+
+    public void RestartLevel()
+    {
+        GamePauseMenu pauseMenu = FindFirstObjectByType<GamePauseMenu>();
+        if (pauseMenu != null)
+            pauseMenu.RestartLevel();
+    }
+
+    public void LoadMainMenu()
+    {
+        GamePauseMenu pauseMenu = FindFirstObjectByType<GamePauseMenu>();
+        if (pauseMenu != null)
+            pauseMenu.LoadMainMenu();
+    }
+
+    public void ResumeGame()
+    {
+        GamePauseMenu pauseMenu = FindFirstObjectByType<GamePauseMenu>();
+        if (pauseMenu != null)
+            pauseMenu.Resume();
+    }
+
+    public void PauseGame()
+    {
+        GamePauseMenu pauseMenu = FindFirstObjectByType<GamePauseMenu>();
+        if (pauseMenu != null)
+            pauseMenu.Pause();
+    }
+
+    public void TogglePause()
+    {
+        GamePauseMenu pauseMenu = FindFirstObjectByType<GamePauseMenu>();
+        if (pauseMenu != null)
+            pauseMenu.TogglePause();
     }
 }

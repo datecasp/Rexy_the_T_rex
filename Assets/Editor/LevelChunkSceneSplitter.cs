@@ -46,6 +46,8 @@ public static class LevelChunkSceneSplitter
         List<EditorBuildSettingsScene> buildScenes =
             new List<EditorBuildSettingsScene>();
 
+        buildScenes.Add(CreateBuildSettingsScene("Assets/Scenes/MainMenu.unity"));
+        buildScenes.Add(CreateBuildSettingsScene("Assets/Scenes/Info.unity"));
         buildScenes.Add(CreateBuildSettingsScene(BootstrapScene));
 
         foreach (ChunkDefinition definition in ChunkDefinitions)
@@ -267,6 +269,8 @@ public static class LevelChunkSceneSplitter
         List<EditorBuildSettingsScene> buildScenes =
             new List<EditorBuildSettingsScene>();
 
+        buildScenes.Add(CreateBuildSettingsScene("Assets/Scenes/MainMenu.unity"));
+        buildScenes.Add(CreateBuildSettingsScene("Assets/Scenes/Info.unity"));
         buildScenes.Add(CreateBuildSettingsScene(bootstrapPath));
         buildScenes.Add(CreateBuildSettingsScene("Assets/Scenes/Level1_Chunk_Isla1.unity"));
         buildScenes.Add(CreateBuildSettingsScene("Assets/Scenes/Level1_Chunk_Isla2.unity"));

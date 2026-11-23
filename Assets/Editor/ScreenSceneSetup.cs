@@ -13,7 +13,9 @@ public static class ScreenSceneSetup
         CreateScreenScene("Assets/Scenes/MainMenu.unity", "01_MainMenu_RexyTheTrex", "01_MainMenu_RexyTheTrex_0", ScreenMenuController.ScreenAction.StartGame);
         CreateScreenScene("Assets/Scenes/LevelClear.unity", "03_LevelClear", "03_LevelClear_0", ScreenMenuController.ScreenAction.MainMenu);
         CreateScreenScene("Assets/Scenes/GameOver.unity", "02_GameOver", "02_GameOver_0", ScreenMenuController.ScreenAction.RetryGame);
+        CreateScreenScene("Assets/Scenes/Info.unity", "Info", "Info", ScreenMenuController.ScreenAction.MainMenu);
 
+        ConfigureMainMenuInformationButton();
         SetupLevelEndTrigger();
         UpdateBuildSettings();
         AssetDatabase.SaveAssets();
@@ -72,6 +74,63 @@ public static class ScreenSceneSetup
         EditorSceneManager.SaveScene(scene, scenePath);
     }
 
+    private static void ConfigureMainMenuInformationButton()
+    {
+        Scene scene = EditorSceneManager.OpenScene("Assets/Scenes/MainMenu.unity", OpenSceneMode.Single);
+        GameObject buttonObject = GameObject.Find("btn_info");
+
+        if (buttonObject == null)
+        {
+            Canvas canvas = Object.FindFirstObjectByType<Canvas>();
+            buttonObject = new GameObject("btn_info", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button), typeof(ScreenMenuController));
+            buttonObject.transform.SetParent(canvas.transform, false);
+        }
+        else
+        {
+            RectTransform existingRect = buttonObject.GetComponent<RectTransform>();
+            if (existingRect == null)
+            {
+                GameObject replacement = new GameObject("btn_info", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button), typeof(ScreenMenuController));
+                replacement.transform.SetParent(Object.FindFirstObjectByType<Canvas>().transform, false);
+                Object.DestroyImmediate(buttonObject);
+                buttonObject = replacement;
+            }
+        }
+
+        RectTransform rect = buttonObject.GetComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.5f, 0.5f);
+        rect.anchorMax = new Vector2(0.5f, 0.5f);
+        rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.anchoredPosition = new Vector2(0f, -290f);
+        rect.sizeDelta = new Vector2(420f, 150f);
+
+        Image image = buttonObject.GetComponent<Image>();
+        if (image == null)
+            image = buttonObject.AddComponent<Image>();
+        image.color = new Color(1f, 1f, 1f, 0f);
+        image.raycastTarget = true;
+
+        Button button = buttonObject.GetComponent<Button>();
+        if (button == null)
+            button = buttonObject.AddComponent<Button>();
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => buttonObject.GetComponent<ScreenMenuController>().ExecuteAction());
+
+        ScreenMenuController controller = buttonObject.GetComponent<ScreenMenuController>();
+        if (controller == null)
+            controller = buttonObject.AddComponent<ScreenMenuController>();
+
+        SerializedObject serializedController = new SerializedObject(controller);
+        serializedController.FindProperty("action").enumValueIndex = (int)ScreenMenuController.ScreenAction.Information;
+        serializedController.FindProperty("gameSceneName").stringValue = "Level1_Bootstrap";
+        serializedController.FindProperty("mainMenuSceneName").stringValue = "MainMenu";
+        serializedController.FindProperty("informationSceneName").stringValue = "Info";
+        serializedController.ApplyModifiedProperties();
+
+        EditorSceneManager.MarkSceneDirty(scene);
+        EditorSceneManager.SaveScene(scene);
+    }
+
     private static Sprite FindSpriteByName(string spriteName)
     {
         string[] guids = AssetDatabase.FindAssets("t:Sprite", new[] { "Assets/Screens" });
@@ -115,7 +174,8 @@ public static class ScreenSceneSetup
         EditorSceneManager.SaveScene(scene);
     }
 
-    private static void UpdateBuildSettings()
+    [MenuItem("Tools/Rexy 2D/Actualizar escenas de compilacion")]
+    public static void UpdateBuildSettings()
     {
         string[] scenePaths =
         {
@@ -128,7 +188,8 @@ public static class ScreenSceneSetup
             "Assets/Scenes/Level1_Chunk_Plataformas.unity",
             "Assets/Scenes/Level1_Chunk_IslaFinal.unity",
             "Assets/Scenes/LevelClear.unity",
-            "Assets/Scenes/GameOver.unity"
+            "Assets/Scenes/GameOver.unity",
+            "Assets/Scenes/Info.unity"
         };
 
         EditorBuildSettingsScene[] scenes = new EditorBuildSettingsScene[scenePaths.Length];
