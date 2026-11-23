@@ -90,11 +90,51 @@ public class HUDManager : MonoBehaviour
         if (lives == 0)
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene(gameOverSceneName);
+            StartCoroutine(LoadGameOverWithFade());
             return false;
         }
 
         return true;
+    }
+
+    private System.Collections.IEnumerator LoadGameOverWithFade()
+    {
+        GameObject fadeObject = new GameObject("GameOverFade");
+        fadeObject.AddComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+
+        Canvas canvas = fadeObject.GetComponent<Canvas>();
+        canvas.sortingOrder = 10000;
+
+        CanvasScaler scaler = fadeObject.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920f, 1080f);
+        scaler.matchWidthOrHeight = 0.5f;
+
+        fadeObject.AddComponent<GraphicRaycaster>();
+
+        Image fadeImage = fadeObject.AddComponent<Image>();
+        fadeImage.raycastTarget = true;
+        fadeImage.color = new Color(0f, 0f, 0f, 0f);
+
+        RectTransform rect = fadeObject.GetComponent<RectTransform>();
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+
+        float elapsed = 0f;
+        float duration = 1.2f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float alpha = Mathf.Clamp01(elapsed / duration);
+            fadeImage.color = new Color(0f, 0f, 0f, alpha);
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(0.25f);
+        SceneManager.LoadScene(gameOverSceneName);
     }
 
     public bool HasLivesRemaining()
