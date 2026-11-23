@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class ScreenMenuController : MonoBehaviour, IPointerDownHandler
+public class ScreenMenuController : MonoBehaviour
 {
     public enum ScreenAction
     {
@@ -34,11 +33,6 @@ public class ScreenMenuController : MonoBehaviour, IPointerDownHandler
 
         if (action == ScreenAction.RetryOrMenu && Input.GetKeyDown(KeyCode.Escape))
             LoadScene(mainMenuSceneName);
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        ExecuteAction();
     }
 
     public void ExecuteAction()
