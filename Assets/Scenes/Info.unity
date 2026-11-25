@@ -260,7 +260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302, y: -427}
+  m_AnchoredPosition: {x: -331, y: -394}
   m_SizeDelta: {x: 430.7, y: 102.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &377686205
@@ -661,7 +661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 315, y: -436}
+  m_AnchoredPosition: {x: 344, y: -393}
   m_SizeDelta: {x: 432.8, y: 114.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1428818646
@@ -679,7 +679,7 @@ MonoBehaviour:
   action: 0
   gameSceneName: Level1_Bootstrap
   mainMenuSceneName: MainMenu
-  informationSceneName: Level1_Bootstrap
+  informationSceneName: Info
 --- !u!114 &1428818647
 MonoBehaviour:
   m_ObjectHideFlags: 0

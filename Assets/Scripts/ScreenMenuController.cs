@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,16 +8,19 @@ public class ScreenMenuController : MonoBehaviour
     {
         StartGame,
         RetryGame,
+        NextLevel,
         MainMenu,
-        RetryOrMenu,
         QuitApplication,
         Information
     }
 
     [SerializeField] private ScreenAction action;
-    [SerializeField] private string gameSceneName = "Level1_Bootstrap";
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
-    [SerializeField] private string informationSceneName = "Info";
+    private string gameSceneName = "Level1_Bootstrap";
+    private string mainMenuSceneName = "MainMenu";
+    private string nextLevelSceneName = "NextLevel";
+    private string informationSceneName = "Info";
+
+    public const string CompletedLevelNumberKey = "Rexy2D.CompletedLevelNumber";
 
     private bool isLoading;
 
@@ -31,7 +35,7 @@ public class ScreenMenuController : MonoBehaviour
         if (action == ScreenAction.Information && Input.GetKeyDown(KeyCode.Escape))
             LoadScene(mainMenuSceneName);
 
-        if (action == ScreenAction.RetryOrMenu && Input.GetKeyDown(KeyCode.Escape))
+        if (action == ScreenAction.NextLevel && Input.GetKeyDown(KeyCode.Escape))
             LoadScene(mainMenuSceneName);
     }
 
@@ -43,6 +47,11 @@ public class ScreenMenuController : MonoBehaviour
         switch (action)
         {
             case ScreenAction.StartGame:
+                PlayerPrefs.SetInt(CompletedLevelNumberKey, 0);
+                PlayerPrefs.Save();
+                LoadScene(gameSceneName);
+                break;
+
             case ScreenAction.RetryGame:
                 LoadScene(gameSceneName);
                 break;
@@ -51,8 +60,8 @@ public class ScreenMenuController : MonoBehaviour
                 LoadScene(mainMenuSceneName);
                 break;
 
-            case ScreenAction.RetryOrMenu:
-                LoadScene(gameSceneName);
+            case ScreenAction.NextLevel:
+                LoadScene(GetNextLevel());
                 break;
 
             case ScreenAction.QuitApplication:
@@ -76,6 +85,56 @@ public class ScreenMenuController : MonoBehaviour
 #endif
     }
 
+    private string GetNextLevel()
+    {
+        int currentLevelNumber = PlayerPrefs.GetInt(CompletedLevelNumberKey, 0);
+
+        if (currentLevelNumber == 0)
+            currentLevelNumber = GetLevelNumber(SceneManager.GetActiveScene().name);
+
+        int nextLevelNumber = currentLevelNumber + 1;
+        nextLevelSceneName = $"Level{nextLevelNumber}_Bootstrap";
+
+        if (IsSceneInBuildSettings(nextLevelSceneName))
+            return nextLevelSceneName;
+
+        Debug.LogWarning("No more levels available. Returning to main menu.");
+        return mainMenuSceneName;
+    }
+
+    private static int GetLevelNumber(string sceneName)
+    {
+        int levelIndex = sceneName.IndexOf("Level", StringComparison.OrdinalIgnoreCase);
+        if (levelIndex < 0)
+            return 0;
+
+        int numberStart = levelIndex + "Level".Length;
+        int numberEnd = numberStart;
+
+        while (numberEnd < sceneName.Length && char.IsDigit(sceneName[numberEnd]))
+            numberEnd++;
+
+        if (numberEnd == numberStart)
+            return 0;
+
+        int.TryParse(sceneName.Substring(numberStart, numberEnd - numberStart), out int levelNumber);
+        return levelNumber;
+    }
+
+    private static bool IsSceneInBuildSettings(string sceneName)
+    {
+        string sceneFileName = $"/{sceneName}.unity";
+
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i).Replace('\\', '/');
+            if (scenePath.EndsWith(sceneFileName, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+
     public void QuitApplication()
     {
         CloseApplication();
@@ -96,7 +155,7 @@ public class ScreenMenuController : MonoBehaviour
     public void LoadInformation()
     {
         Time.timeScale = 1f;
-        LoadScene("Info");
+        LoadScene(informationSceneName);
     }
 
     public void LoadGame()

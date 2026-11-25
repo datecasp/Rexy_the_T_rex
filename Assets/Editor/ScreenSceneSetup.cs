@@ -189,7 +189,9 @@ public static class ScreenSceneSetup
             "Assets/Scenes/Level1_Chunk_IslaFinal.unity",
             "Assets/Scenes/LevelClear.unity",
             "Assets/Scenes/GameOver.unity",
-            "Assets/Scenes/Info.unity"
+            "Assets/Scenes/Info.unity",
+            "Assets/Scenes/Level2_Bootstrap.unity",
+            "Assets/Scenes/Level2_Chunk_Isla1.unity"
         };
 
         EditorBuildSettingsScene[] scenes = new EditorBuildSettingsScene[scenePaths.Length];
